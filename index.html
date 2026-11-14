@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SafeCheck AI — Free customer protection tool to check suspicious phone numbers, sender IDs, and text messages before acting." />
+  <title>SafeCheck AI — Contact Number &amp; Suspicious Message Checker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Public Website Header -->
+  <header class="site-header">
+    <div class="site-header-inner">
+      <div class="site-brand">
+        <div class="site-logo" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <path d="m9 12 2 2 4-4"></path>
+          </svg>
+        </div>
+        <div>
+          <h1>SafeCheck AI · Customer Protection Center</h1>
+          <p>Verify suspicious contact numbers &amp; text messages safely before you act</p>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <label for="regionSelect" class="region-label">Your Region:</label>
+        <select id="regionSelect" class="region-select">
+          <option value="AUTO">Auto-Detect</option>
+          <option value="SG">Singapore (+65)</option>
+          <option value="US/CA">US / Canada (+1)</option>
+          <option value="UK">United Kingdom (+44)</option>
+          <option value="AU">Australia (+61)</option>
+          <option value="MY">Malaysia (+60)</option>
+          <option value="HK">Hong Kong (+852)</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Lookup Section -->
+  <section class="hero-section">
+    <div class="hero-inner">
+      <div class="hero-title-area">
+        <h2>Received an Unexpected Call or Message? Check It Safely First.</h2>
+        <p>Enter the contact phone number (or sender name) and paste the message they sent you. Our AI checks for spoofed prefixes, phishing links, urgency traps, and tells you how to verify safely before acting.</p>
+      </div>
+
+      <form id="checkerForm" class="lookup-card" novalidate>
+        <div class="lookup-grid">
+          <!-- Step 1: Contact Number -->
+          <div>
+            <label for="phoneInput" class="field-step-label">
+              <span class="step-circle">1</span>
+              <span>Contact Phone Number or Sender ID</span>
+            </label>
+            <div class="phone-input-wrap">
+              <span class="phone-icon-prefix" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </span>
+              <input id="phoneInput" class="phone-number-input" type="tel" autocomplete="off" placeholder="Enter phone number or sender ID (e.g. +65 8123 4567)" />
+            </div>
+          </div>
+
+          <!-- Step 2: Message Content -->
+          <div>
+            <label for="messageInput" class="field-step-label">
+              <span class="step-circle">2</span>
+              <span>Message Content (paste SMS, WhatsApp, or email text)</span>
+            </label>
+            <textarea id="messageInput" class="message-textarea" placeholder="Paste the exact message you received here (or leave blank to check the phone number alone)..."></textarea>
+          </div>
+        </div>
+
+        <div class="lookup-footer">
+          <div class="privacy-note">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span>Private &amp; secure — analyzed directly in your browser.</span>
+            <button id="fillExampleBtn" type="button" class="link-btn">Try with an example</button>
+          </div>
+
+          <div class="btn-group">
+            <button id="clearBtn" type="button" class="secondary-btn">Clear</button>
+            <button id="checkNowBtn" type="submit" class="check-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              Check Safety Now
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Main Website Results Section -->
+  <main class="results-container">
+    <!-- Empty / Initial State Guide (shown before customer enters a number/message) -->
+    <section id="emptyStatePanel" class="inspection-card empty-guide-card">
+      <div class="empty-guide-header">
+        <h3>How SafeCheck AI Protects You</h3>
+        <p>Enter any contact number or message above to run an instant AI safety inspection. We automatically check for:</p>
+      </div>
+      <div class="guide-pillars">
+        <div class="pillar-item">
+          <span class="pillar-num">1</span>
+          <h4>Contact Number &amp; Prefix Spoofing</h4>
+          <p>Detects foreign dialing codes, "+65" spoofing, premium-rate numbers, and unverified numbers claiming to be banks or government agencies.</p>
+        </div>
+        <div class="pillar-item">
+          <span class="pillar-num">2</span>
+          <h4>Deceptive Links &amp; Urgency Traps</h4>
+          <p>Spots shortened URLs, lookalike phishing domains, fake parcel fees, OTP harvesting, and high-pressure countdown threats.</p>
+        </div>
+        <div class="pillar-item">
+          <span class="pillar-num">3</span>
+          <h4>How to Verify Safely Before Acting</h4>
+          <p>Provides clear, step-by-step instructions from our customer protection team on how to confirm if a message is genuine.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Active Results Container (shown as soon as a number or message is checked) -->
+    <div id="activeResultsWrap" style="display: none;">
+      <section class="inspection-card" aria-label="Lookup Results">
+        <div class="number-profile-bar">
+          <div class="profile-stat">
+            <span class="profile-stat-label">Contact Number / Sender</span>
+            <span id="statPhone" class="profile-stat-val">—</span>
+          </div>
+          <div class="profile-stat">
+            <span class="profile-stat-label">Line / Sender Type</span>
+            <span id="statLineType" class="profile-stat-val">—</span>
+          </div>
+          <div class="profile-stat">
+            <span class="profile-stat-label">Origin / Dialing Format</span>
+            <span id="statOrigin" class="profile-stat-val">—</span>
+          </div>
+          <div class="profile-stat">
+            <span class="profile-stat-label">Number Risk Signal</span>
+            <span id="statFormatStatus" class="profile-stat-val">—</span>
+          </div>
+        </div>
+
+        <!-- Checked Message Card with Red Rectangle at Bottom-Right -->
+        <div id="messageDisplayBox" class="message-display-box">
+          <div class="message-box-top">
+            <span id="msgSenderLabel">Checked Input</span>
+            <span id="riskScoreLabel">AI Risk Score: 0/100</span>
+          </div>
+
+          <div id="messageDisplayBody" class="message-box-body"></div>
+
+          <!-- Integrated Footer with Red Rectangle at Bottom-Right -->
+          <div class="message-box-footer">
+            <span id="footerAiSummary" class="ai-scan-summary"></span>
+            <button id="verdictRectBadge" type="button" class="verdict-rect-badge verdict-suspicious">
+              <span id="verdictRectIcon" class="rect-x-icon">✕</span>
+              <span id="verdictRectText">Suspicious</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Connected Warning Banner Right Below the Message Box -->
+        <div id="connectedAlertBar" class="connected-alert-bar verdict-suspicious">
+          <div id="alertBarIcon" class="alert-bar-icon">✕</div>
+          <div id="alertBarText" class="alert-bar-text"></div>
+        </div>
+      </section>
+
+      <!-- Numbered Warning Signs & Numbered Safe Verification Steps -->
+      <section id="breakdownSection" class="details-grid" style="margin-top: 24px;">
+        <div class="detail-panel">
+          <h3>
+            <span style="color:#dc2626;">✕</span>
+            <span>Warning Signs Pointed Out</span>
+          </h3>
+          <div id="warningList" class="numbered-list"></div>
+        </div>
+
+        <div class="detail-panel">
+          <h3>
+            <span style="color:#059669;">✓</span>
+            <span>How to Check Safely Before Acting</span>
+          </h3>
+          <div id="safeStepsList" class="numbered-list"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <span>SafeCheck AI · Customer Scam &amp; Contact Number Verification Portal</span>
+      <span>Never share your OTP, PIN, or password with anyone.</span>
+    </div>
+  </footer>
+
+  <script src="ai-engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
